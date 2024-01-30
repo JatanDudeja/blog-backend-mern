@@ -86,15 +86,17 @@ const loginUser = asyncHandler(async (req, res) => {
     "-password -refreshToken"
   );
 
-  // const options = {
-  //   httpOnly: true,
-  //   secure: true,
-  // };
+  const options = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'Lax', // or 'Strict'
+  };
+  
 
   return res
     .status(200)
-    .cookie("accessToken", accessToken)
-    .cookie("refreshToken", newRefreshToken)
+    .cookie("accessToken", accessToken, options)
+    .cookie("refreshToken", newRefreshToken, options)
     .json(
       new APIResponse(
         200,
@@ -121,15 +123,17 @@ const logoutUser = asyncHandler(async (req, res) => {
     }
   );
 
-  // const options = {
-  //   httpOnly: true,
-  //   secure: true,
-  // };
+  const options = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'Lax',
+  };
+  
 
   return res
     .status(200)
-    .clearCookie("accessToken")
-    .clearCookie("refreshToken")
+    .clearCookie("accessToken", options)
+    .clearCookie("refreshToken", options)
     .json(new APIResponse(200, {}, "User logged out successfully."));
 });
 
@@ -156,10 +160,12 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
       throw new APIErrors(401, "Refresh Token is expired or used.");
     }
   
-    // const options = {
-    //   httpOnly: true,
-    //   secure: true,
-    // };
+    const options = {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'Lax', // or 'Strict'
+    };
+    
   
     const { accessToken, newRefreshToken } = await generateAccessAndRefreshTokens(
       user._id
@@ -167,8 +173,8 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
   
     return res
       .status(200)
-      .cookie("accessToken", accessToken)
-      .cookie("refreshToken", newRefreshToken)
+      .cookie("accessToken", accessToken, options)
+      .cookie("refreshToken", newRefreshToken, options)
       .json(
         new APIResponse(
           200,
