@@ -5,7 +5,7 @@
   "description": "Backend For Blogging Website",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
+    "dev": "node src/index.js"
   },
   "author": "Jatan Dudeja",
   "license": "ISC",
