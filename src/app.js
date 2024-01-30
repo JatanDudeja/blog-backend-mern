@@ -21,6 +21,7 @@ app.use(cookieParser());
 
 import userRouter from "./routes/user.route.js";
 
+app.use("/api/v1/", res.send("Hello! Server Is Running Fine!!"))
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/blogs", blogRouter)
 
