@@ -143,7 +143,6 @@ const editPost = asyncHandler(async (req, res) => {
 const deletePost = asyncHandler(async (req, res) => {
   try {
     const blog = Blog.findById(req.params.id)
-    console.log("\n\n\n\n", blog, "\n\n\n\n")
   
     if(!blog){
       throw new APIErrors(400, 'Blog does not exist!')
