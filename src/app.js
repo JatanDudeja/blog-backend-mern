@@ -7,7 +7,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://blog-frontend-website.vercel.app/", "https://blog-frontend-website-git-master-jatandudeja.vercel.app/", "https://blog-frontend-website-jatandudeja.vercel.app/"],
+    origin: ["http://localhost:3000", "https://blog-frontend-website.vercel.app/", "https://blog-frontend-website-git-master-jatandudeja.vercel.app/", "https://blog-frontend-website-jatandudeja.vercel.app/", "https://bloggers-pcvr.onrender.com"],
     credentials: true,
   })
 );
