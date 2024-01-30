@@ -24,5 +24,4 @@ import userRouter from "./routes/user.route.js";
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/blogs", blogRouter);
 
-app.use("/api/v1/", (req, res) => (res.send("Hello! Server Is Running Fine!!")));
 export { app };
